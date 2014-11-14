@@ -1,0 +1,10 @@
+input {
+  lumberjack {
+    # The port to listen on
+    port => <%= @lumberjack_port %>
+
+    # The paths to your ssl cert and key
+    ssl_certificate => "<%= @lumberjack_cert_path %>/logstash_forwarder.crt"
+    ssl_key => "<%= @lumberjack_cert_path %>/logstash_forwarder.key"
+  }
+}
