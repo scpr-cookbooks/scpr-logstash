@@ -11,7 +11,7 @@ output {
         "cid"   => "%{quuid}"
         "t"     => "pageview"
         "dh"    => "%{nginx_host}"
-        "dp"    => "%{request}"
+        "dp"    => "%{request_path}"
         "uip"   => "%{clientip}"
         "ua"    => "%{agent}"
         "cd1"   => "%{qvia}"
