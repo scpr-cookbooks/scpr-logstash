@@ -14,5 +14,11 @@ filter {
       field_split => "&?"
       prefix => "q"
     }
+
+    if [qvia] in ["podcast","website"] {
+      uuid {
+        target => "quuid"
+      }
+    }
   }
 }

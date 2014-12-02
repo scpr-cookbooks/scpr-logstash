@@ -1,0 +1,23 @@
+output {
+  if [type] == "nginx" and [response] == 200 and [qvia] in ["podcast","website"] {
+    http {
+      format      => "form"
+      http_method => "post"
+      url         => "https://www.google-analytics.com/collect"
+      verify_ssl  => false
+      mapping => {
+        "v"     => 1
+        "tid"   => "UA-624724-8"
+        "cid"   => "%{quuid}"
+        "t"     => "pageview"
+        "dh"    => "%{nginx_host}"
+        "dp"    => "%{request}"
+        "uip"   => "%{clientip}"
+        "ua"    => "%{agent}"
+        "cd1"   => "%{qvia}"
+        "cd2"   => "%{qcontext}"
+        "cm1"   => "%{bytes_sent}"
+      }
+    }
+  }
+}

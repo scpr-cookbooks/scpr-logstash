@@ -6,6 +6,7 @@ default.scpr_logstash.config_templates = {
   #'output_stdout'           => 'config/output_stdout.conf.erb',
   'output_elasticsearch'    => 'config/output_elasticsearch.conf.erb',
   'filter_nginx'            => 'config/filter_nginx.conf.erb',
+  'output_audio_ga'         => 'config/output_audio_ga.conf.erb'
 }
 
 default.scpr_logstash.pattern_templates = {
