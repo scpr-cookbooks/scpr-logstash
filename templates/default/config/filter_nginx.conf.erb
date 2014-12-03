@@ -15,10 +15,11 @@ filter {
       prefix => "q"
     }
 
-    if [qvia] in ["podcast","website"] {
-      uuid {
-        target => "quuid"
-      }
+    mutate {
+      gsub => [
+        "agent", "(?:^\"|\"$)","",
+        "range_request", "(?:^\"|\"$)",""
+      ]
     }
   }
 }
