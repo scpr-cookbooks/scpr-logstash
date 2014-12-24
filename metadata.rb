@@ -4,7 +4,7 @@ maintainer_email 'erichardson@scpr.org'
 license          'all_rights'
 description      'Installs/Configures scpr-logstash'
 long_description 'Installs/Configures scpr-logstash'
-version          '0.1.16'
+version          '0.1.17'
 
 depends "apt"
 depends "logstash"

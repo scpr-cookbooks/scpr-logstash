@@ -15,6 +15,10 @@ filter {
       prefix => "q"
     }
 
+    geoip {
+      source => "clientip"
+    }
+
     mutate {
       gsub => [
         "agent", "(?:^\"|\"$)","",
