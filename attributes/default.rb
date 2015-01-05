@@ -13,17 +13,17 @@ default.scpr_logstash.pattern_templates = {
   'nginx'   => 'patterns/nginx.erb'
 }
 
-default.scpr_logstash.elasticsearch_ip = node.ipaddress
-default.scpr_logstash.elasticsearch_protocol = "http"
-default.scpr_logstash.version     = "1.4.2"
-default.scpr_logstash.source_url  = "https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz"
-default.scpr_logstash.elasticsearch_embedded = false
+default.scpr_logstash.elasticsearch_ip        = node.ipaddress
+default.scpr_logstash.elasticsearch_protocol  = "http"
+default.scpr_logstash.version                 = "1.4.2"
+default.scpr_logstash.source_url              = "https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz"
+default.scpr_logstash.elasticsearch_embedded  = false
 
-default.scpr_logstash.lumberjack_port = "5960"
+default.scpr_logstash.lumberjack_port         = "5960"
 
-default.scpr_logstash.lumberjack_ssl_path = "/etc"
+default.scpr_logstash.lumberjack_ssl_path     = "/etc"
 
-default.scpr_logstash.kibana = true
+default.scpr_logstash.kibana                  = true
 
 #----------
 
