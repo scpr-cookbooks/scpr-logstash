@@ -15,3 +15,12 @@ suites:
     run_list:
       - recipe[scpr-logstash::default]
     attributes:
+  - name: cluster
+    run_list:
+      - recipe[scpr-logstash::default]
+    attributes:
+      scpr_elasticsearch:
+        discovery: true
+        cluster_name: logstash_test
+      scpr_logstash:
+        elasticsearch_cluster: logstash_test

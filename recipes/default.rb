@@ -13,7 +13,10 @@ include_recipe "java"
 
 # -- Install Elasticsearch -- #
 
-include_recipe "elasticsearch"
+if node.scpr_logstash.install_elasticsearch
+  # FIXME: this should be using scpr-elasticsearch
+  include_recipe "scpr-elasticsearch"
+end
 
 # -- Install Logstash -- #
 
@@ -34,23 +37,32 @@ end
   end
 end
 
+config_opts = {
+  elasticsearch_protocol:   node.scpr_logstash.elasticsearch_protocol,
+  lumberjack_port:          node.scpr_logstash.lumberjack_port,
+  lumberjack_cert_path:     node.scpr_logstash.lumberjack_ssl_path,
+}
+
+# what ES connection method are we using?
+if node.scpr_logstash.elasticsearch_embedded
+  config_opts[:elasticsearch_embedded]  = node.scpr_logstash.elasticsearch_embedded
+elsif node.scpr_logstash.elasticsearch_cluster
+  config_opts[:elasticsearch_cluster]   = node.scpr_logstash.elasticsearch_cluster
+else
+  config_opts[:elasticsearch_ip]        = node.scpr_logstash.elasticsearch_ip
+end
+
 logstash_config node.scpr_logstash.name do
-  action  :create
-  templates node.scpr_logstash.config_templates
-  templates_cookbook "scpr-logstash"
-  variables(
-    elasticsearch_embedded:   node.scpr_logstash.elasticsearch_embedded,
-    elasticsearch_ip:         node.scpr_logstash.elasticsearch_ip,
-    elasticsearch_protocol:   node.scpr_logstash.elasticsearch_protocol,
-    lumberjack_port:          node.scpr_logstash.lumberjack_port,
-    lumberjack_cert_path:     node.scpr_logstash.lumberjack_ssl_path,
-  )
+  action              :create
+  templates           node.scpr_logstash.config_templates
+  templates_cookbook  "scpr-logstash"
+  variables           config_opts
 end
 
 logstash_pattern node.scpr_logstash.name do
-  action :create
-  templates node.scpr_logstash.pattern_templates
-  templates_cookbook "scpr-logstash"
+  action              :create
+  templates           node.scpr_logstash.pattern_templates
+  templates_cookbook  "scpr-logstash"
 end
 
 if node.scpr_logstash.kibana

@@ -6,13 +6,14 @@ default.scpr_logstash.config_templates = {
   #'output_stdout'           => 'config/output_stdout.conf.erb',
   'output_elasticsearch'    => 'config/output_elasticsearch.conf.erb',
   'filter_nginx'            => 'config/filter_nginx.conf.erb',
-  'output_audio_ga'         => 'config/output_audio_ga.conf.erb'
 }
 
 default.scpr_logstash.pattern_templates = {
   'nginx'   => 'patterns/nginx.erb'
 }
 
+default.scpr_logstash.install_elasticsearch   = true
+default.scpr_logstash.elasticsearch_cluster   = nil
 default.scpr_logstash.elasticsearch_ip        = node.ipaddress
 default.scpr_logstash.elasticsearch_protocol  = "http"
 default.scpr_logstash.version                 = "1.4.2"
