@@ -20,4 +20,6 @@ kibana_web "kibana" do
   type        'nginx'
   docroot     '/opt/kibana/current'
   listen_port "80"
+  es_server   node.scpr_logstash.kibana_es_server
+  server_name node.scpr_logstash.kibana_server_name
 end

@@ -25,6 +25,8 @@ default.scpr_logstash.lumberjack_port         = "5960"
 default.scpr_logstash.lumberjack_ssl_path     = "/etc"
 
 default.scpr_logstash.kibana                  = true
+default.scpr_logstash.kibana_es_server        = node.ipaddress
+default.scpr_logstash.kibana_server_name      = "kibana"
 
 #----------
 
