@@ -3,12 +3,15 @@ filter {
     grok {
       match => ["message", "%{NGINXACCESS}" ]
     }
+
     grok {
       match => ["request","%{URIPATH:request_path}(?:%{URIPARAM:request_params})?"]
     }
+
     date {
       match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z", "dd/MMM/yyyy:HH:mm:ss" ]
     }
+
     kv {
       source => "request_params"
       field_split => "&?"
@@ -24,6 +27,19 @@ filter {
         "agent", "(?:^\"|\"$)","",
         "range_request", "(?:^\"|\"$)",""
       ]
+    }
+
+    # -- Audio Events -- #
+
+    if [nginx_host] == "media.scpr.org" and [request_path] =~ "^\/(?:audio|podcasts)\/" {
+      grok { match => {"request_path" => "^/(?<audio_path>audio|podcasts)/" } }
+      mutate {
+        add_field => {
+          "[@metadata][es_index]" => "audio"
+        }
+      }
+    } else {
+      mutate { add_field => { "[@metadata][es_index]" => "nginx" }}
     }
   }
 }

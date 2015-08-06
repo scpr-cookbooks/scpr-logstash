@@ -1,4 +1,3 @@
 # scpr-logstash
 
-TODO: Enter the cookbook description here.
-
+Set up our Logstash server.

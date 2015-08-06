@@ -1,13 +1,14 @@
 name             'scpr-logstash'
 maintainer       'Eric Richardson'
 maintainer_email 'erichardson@scpr.org'
-license          'all_rights'
-description      'Installs/Configures scpr-logstash'
-long_description 'Installs/Configures scpr-logstash'
-version          '0.2.1'
+license          'apache2'
+description      'Wrapper cookbook for SCPR logstash installs'
+long_description 'Wrapper cookbook for SCPR logstash installs'
+version          '1.0.0'
 
 depends "apt"
 depends "logstash"
 depends "scpr-elasticsearch"
-depends "java"
-depends "kibana"
+depends "scpr-java"
+depends "kibana_lwrp"
+depends "scpr-consul"

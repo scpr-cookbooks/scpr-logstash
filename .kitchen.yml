@@ -12,10 +12,14 @@ platforms:
 
 suites:
   - name: default
+    data_bags_path: ./test/data_bags
     run_list:
+      - recipe[apt]
+      - recipe[scpr-elasticsearch::default]
       - recipe[scpr-logstash::default]
     attributes:
   - name: cluster
+    data_bags_path: ./test/data_bags
     run_list:
       - recipe[scpr-logstash::default]
     attributes:
