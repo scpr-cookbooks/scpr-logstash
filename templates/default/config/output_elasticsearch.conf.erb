@@ -24,6 +24,7 @@ output {
       index => "logstash-%{+YYYY.MM.dd}"
       protocol => "<%= @elasticsearch_protocol %>"
       template => "<%= @logstash_dir %>/etc/es-mapping.json"
+      template_overwrite => true
     }
   }
 }
