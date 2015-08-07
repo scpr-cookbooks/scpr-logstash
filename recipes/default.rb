@@ -84,3 +84,11 @@ if node.scpr_logstash.kibana
   include_recipe "scpr-logstash::kibana"
 end
 
+if node.scpr_logstash.consul
+  include_recipe "scpr-consul"
+
+  consul_service_def "logstash" do
+    action    :create
+    notifies  :reload, "service[consul]"
+  end
+end
