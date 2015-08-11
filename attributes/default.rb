@@ -27,8 +27,13 @@ default.scpr_logstash.lumberjack_port         = "5960"
 
 default.scpr_logstash.lumberjack_ssl_path     = "/etc"
 
+default.scpr_logstash.kibana_version          = "4.1.1-linux-x64"
+default.scpr_logstash.kibana_file_url         = "https://download.elastic.co/kibana/kibana/kibana-4.1.1-linux-x64.tar.gz"
+default.scpr_logstash.kibana_file_checksum    = "6f42d25f337fd49f38e2af81b9ab6e0c987a199a8c0b2e1410d072f812cb4520"
+
 default.scpr_logstash.kibana                  = false
-default.scpr_logstash.kibana_es_server        = node.ipaddress
+default.scpr_logstash.kibana_es_uri           = "http://127.0.0.1:9200"
 default.scpr_logstash.kibana_server_name      = "kibana"
+default.scpr_logstash.kibana_port             = 5061
 
 default.scpr_logstash.consul = true

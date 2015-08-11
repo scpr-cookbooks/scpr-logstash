@@ -1,0 +1,13 @@
+description "Kibana"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+console log
+
+setuid <%= @user %>
+
+exec /usr/bin/env <%= @dir %>/current/bin/kibana -c <%= @dir %>/kibana.yml
+
+respawn
+respawn limit 3 180

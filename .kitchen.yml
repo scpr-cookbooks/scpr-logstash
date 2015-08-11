@@ -17,14 +17,6 @@ suites:
       - recipe[apt]
       - recipe[scpr-elasticsearch::default]
       - recipe[scpr-logstash::default]
+      - recipe[scpr-logstash::kibana]
     attributes:
-  - name: cluster
-    data_bags_path: ./test/data_bags
-    run_list:
-      - recipe[scpr-logstash::default]
-    attributes:
-      scpr_elasticsearch:
-        discovery: true
-        cluster_name: logstash_test
-      scpr_logstash:
-        elasticsearch_cluster: logstash_test
+
