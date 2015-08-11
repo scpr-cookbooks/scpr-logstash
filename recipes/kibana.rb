@@ -54,7 +54,7 @@ end
 
 names = node.scpr_logstash.kibana_server_name.split(" ")
 
-if names > 1
+if names.length > 1
   server_name     = names[0]
   server_aliases  = names[1..-1]
 else
