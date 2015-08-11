@@ -52,12 +52,23 @@ end
 
 # -- Install / Configure nginx -- #
 
+names = node.scpr_logstash.kibana_server_name.split(" ")
+
+if names > 1
+  server_name     = names[0]
+  server_aliases  = names[1..-1]
+else
+  server_name     = names[0]
+  server_aliases  = []
+end
+
 kibana_web "kibana" do
-  type        'nginx'
-  template    'kibana-nginx_file.conf.erb'
-  docroot     '/opt/kibana/current'
-  listen_port "80"
-  es_server   node.scpr_logstash.kibana_es_uri
-  server_name node.scpr_logstash.kibana_server_name
-  kibana_port node.scpr_logstash.kibana_port
+  type            'nginx'
+  template        'kibana-nginx_file.conf.erb'
+  docroot         '/opt/kibana/current'
+  listen_port     '80'
+  es_server       node.scpr_logstash.kibana_es_uri
+  server_name     server_name
+  server_aliases  server_aliases
+  kibana_port     node.scpr_logstash.kibana_port
 end
