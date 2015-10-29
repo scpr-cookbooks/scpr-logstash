@@ -33,9 +33,12 @@ filter {
 
     if [nginx_host] == "media.scpr.org" and [request_path] =~ "^\/(?:audio|podcasts)\/" {
       grok { match => {"request_path" => "^/(?<audio_path>audio|podcasts)/" } }
+      grok { match => {"agent" => "%{BOTUSERAGENT:bot}" } }
       mutate {
         add_field => {
           "[@metadata][es_index]" => "audio"
+          "synth_uuid1" => "%{clientip}-%{request_path}"
+          "synth_uuid2" => "%{clientip}-%{request_path}-%{agent}"
         }
       }
     } else {

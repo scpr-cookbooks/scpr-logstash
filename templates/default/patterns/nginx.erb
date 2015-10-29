@@ -1,3 +1,5 @@
 NGUSERNAME [a-zA-Z\.\@\-\+_%]+
 NGUSER %{NGUSERNAME}
 NGINXACCESS %{IPORHOST:clientip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:timestamp}\] "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:response} (?:%{NUMBER:bytes_sent:int}|-) (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent}(?: %{NUMBER:request_time:float} (?:%{NUMBER:upstream_time:float}|\-) [\w\.](?: %{QS:range_request})?)?
+
+BOTUSERAGENT (Yandex|Googlebot|Yahoo! Slurp|AhrefsBot|bingbot|Flamingo_SearchEngine|stitcherbot|GigablastOpenSource|Twitterbot|Baiduspider|EveryoneSocialBot|archive.org_bot|betaBot|SputnikBot|SputnikBot|XoviBot|DotBot|TurnItInBot|Applebot|libwww-perl|heritrix|Python-urllib)
