@@ -4,7 +4,7 @@ maintainer_email 'erichardson@scpr.org'
 license          'apache2'
 description      'Wrapper cookbook for SCPR logstash installs'
 long_description 'Wrapper cookbook for SCPR logstash installs'
-version          '1.1.2'
+version          '1.1.3'
 
 depends "apt"
 depends "logstash"

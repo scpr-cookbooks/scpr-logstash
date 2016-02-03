@@ -7,6 +7,7 @@ default.scpr_logstash.databag_item  = "logstash_forwarder"
 default.scpr_logstash.config_templates = {
   'input_lumberjack'        => 'config/input_lumberjack.conf.erb',
   'input_syslog'            => 'config/input_syslog.conf.erb',
+  'input_http'              => "config/input_http.conf.erb",
   'output_elasticsearch'    => 'config/output_elasticsearch.conf.erb',
   'filter_nginx'            => 'config/filter_nginx.conf.erb',
 }
