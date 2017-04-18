@@ -12,6 +12,18 @@ output {
       protocol => "<%= @elasticsearch_protocol %>"
       template => "<%= @logstash_dir %>/etc/es-mapping.json"
     }
+    elasticsearch {
+  <% if @new_elasticsearch_ip -%>
+      host => "<%= @new_elasticsearch_ip %>"
+  <% end -%>
+  <% if @new_elasticsearch_cluster -%>
+      cluster => "<%= @new_elasticsearch_cluster %>"
+  <% end -%>
+
+      index => "logstash-%{[@metadata][es_index]}-%{+YYYY.MM.dd}"
+      protocol => "<%= @elasticsearch_protocol %>"
+      template => "<%= @logstash_dir %>/etc/es-mapping.json"
+    }
   } else {
     elasticsearch {
   <% if @elasticsearch_ip -%>
@@ -19,6 +31,19 @@ output {
   <% end -%>
   <% if @elasticsearch_cluster -%>
       cluster => "<%= @elasticsearch_cluster %>"
+  <% end -%>
+
+      index => "logstash-%{+YYYY.MM.dd}"
+      protocol => "<%= @elasticsearch_protocol %>"
+      template => "<%= @logstash_dir %>/etc/es-mapping.json"
+      template_overwrite => true
+    }
+    elasticsearch {
+  <% if @new_elasticsearch_ip -%>
+      host => "<%= @new_elasticsearch_ip %>"
+  <% end -%>
+  <% if @new_elasticsearch_cluster -%>
+      cluster => "<%= @new_elasticsearch_cluster %>"
   <% end -%>
 
       index => "logstash-%{+YYYY.MM.dd}"
